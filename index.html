@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zylo AI - Your Intelligent Assistant</title>
+    <title>Zylo AI - Chat</title>
     <style>
         * {
             margin: 0;
@@ -14,212 +14,211 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
             color: #333;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
+        .header {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        main {
-            margin-top: 80px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            color: white;
             padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .features {
-            background: white;
-            padding: 4rem 0;
-        }
-
-        .features h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: #667eea;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .chat-section {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            padding: 4rem 0;
+        .header h1 {
             color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .chat-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .chat-box {
-            background: white;
-            border-radius: 15px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-            color: #333;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            border-radius: 10px;
-        }
-
-        .user-message {
-            background: #e3f2fd;
-            text-align: right;
-        }
-
-        .ai-message {
-            background: #f3e5f5;
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            border-radius: 25px;
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
             font-size: 1rem;
         }
 
-        .send-button {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 1rem 2rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 2rem;
+            min-height: 0;
         }
 
-        .send-button:hover {
-            background: #ff5252;
+        .chat-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            overflow-y: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            margin-left: auto;
+            text-align: right;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .ai-message {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            margin-right: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            margin-right: auto;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            border-left: 4px solid #ff4757;
+        }
+
+        .message-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .message-sender {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .chat-input-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .chat-input:focus {
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .chat-input:disabled {
+            background: #e9ecef;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         .send-button:disabled {
             background: #ccc;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .typing-indicator {
-            color: #666;
+            background: linear-gradient(135deg, #f1f3f4, #e8eaed) !important;
+            border-left: 4px solid #ffc107 !important;
         }
 
         .typing-dots {
+            display: inline-block;
             animation: typing 1.5s infinite;
+        }
+
+        .typing-dots::after {
+            content: '●●●';
+            animation: dots 1.5s infinite;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #666;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .clear-chat {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .clear-chat:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes typing {
@@ -228,202 +227,151 @@
             100% { opacity: 1; }
         }
 
-        .error-message {
-            background: #ffebee !important;
-            border-left: 4px solid #f44336 !important;
-        }
-
-        input:disabled {
-            background: #f5f5f5;
-            cursor: not-allowed;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes dots {
+            0% { content: '●○○'; }
+            33% { content: '●●○'; }
+            66% { content: '●●●'; }
+            100% { content: '●○○'; }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .chat-container {
+                padding: 1rem;
             }
             
-            .hero h1 {
-                font-size: 2.5rem;
+            .header {
+                padding: 1rem;
             }
             
-            .feature-grid {
-                grid-template-columns: 1fr;
+            .header h1 {
+                font-size: 1.5rem;
             }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .chat-input-container {
+                padding: 0.8rem;
+            }
+            
+            .chat-input {
+                padding: 0.8rem 1rem;
+            }
+            
+            .send-button {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Scrollbar styling */
+        .chat-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-box::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.5);
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">🤖 Zylo AI</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#chat">Chat</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="header">
+        <h1>🤖 Zylo AI</h1>
+        <p>Your intelligent conversation partner powered by Grok</p>
+        <button class="clear-chat" onclick="clearChat()">Clear Chat</button>
+    </div>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>Meet Zylo AI</h1>
-                <p>Your next-generation intelligent assistant, ready to help you with anything</p>
-                <button class="cta-button" onclick="scrollToChat()">Start Chatting</button>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <div class="welcome-message">
+                👋 Welcome! I'm Zylo, your AI assistant powered by Grok. Ask me anything or just say hello!
             </div>
-        </section>
-
-        <section id="features" class="features">
-            <div class="container">
-                <h2>What Makes Zylo Special</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3>Advanced Intelligence</h3>
-                        <p>Powered by cutting-edge AI technology to understand and respond to complex queries with remarkable accuracy.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Lightning Fast</h3>
-                        <p>Get instant responses to your questions. Zylo processes information at incredible speeds to serve you better.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Secure & Private</h3>
-                        <p>Your conversations are protected with enterprise-grade security. Your privacy is our top priority.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🌍</div>
-                        <h3>Multilingual</h3>
-                        <p>Communicate in over 50 languages. Zylo breaks down language barriers to serve users globally.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Personalized</h3>
-                        <p>Learns your preferences and adapts to provide increasingly relevant and helpful responses over time.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Always Learning</h3>
-                        <p>Continuously improving through advanced machine learning to provide you with the best possible experience.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="chat" class="chat-section">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 2rem;">Chat with Zylo</h2>
-                <div class="chat-container">
-                    <div class="chat-box" id="chatBox">
-                        <div class="message ai-message">
-                            <strong>Zylo:</strong> Hi there! I'm Zylo, your AI assistant. How can I help you today?
-                        </div>
-                    </div>
-                    <div class="chat-input">
-                        <input type="text" id="messageInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
-                        <button class="send-button" onclick="sendMessage()">Send</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="features">
-            <div class="container">
-                <h2>About Zylo AI</h2>
-                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                    <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
-                        Zylo AI represents the future of intelligent assistance. Built with state-of-the-art machine learning algorithms, 
-                        Zylo is designed to understand context, provide accurate information, and engage in meaningful conversations 
-                        that help users accomplish their goals more efficiently.
-                    </p>
-                    <p style="font-size: 1.1rem; line-height: 1.6;">
-                        Whether you need help with research, creative writing, problem-solving, or just want to have an engaging conversation, 
-                        Zylo is here to assist you 24/7 with intelligence, empathy, and reliability.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Zylo AI. Empowering conversations through artificial intelligence.</p>
         </div>
-    </footer>
+        
+        <div class="chat-input-container">
+            <input 
+                type="text" 
+                id="messageInput" 
+                class="chat-input" 
+                placeholder="Type your message here..." 
+                onkeypress="handleKeyPress(event)"
+                maxlength="500"
+            >
+            <button class="send-button" onclick="sendMessage()" id="sendButton">
+                ➤
+            </button>
+        </div>
+    </div>
 
     <script>
-        const idkgroksapi = 'xai-vfMTTjT1yJRgV65HrEwJSoPrRbHRCvGUJvJs9nSDEyrvmHQ9V3NmedGpyVyj3n09izpBZTxwYMWziumk';
-        const urlforapi = 'https://api.x.ai/v1/chat/completions';
-
-        function scrollToChat() {
-            document.getElementById('chat').scrollIntoView({ behavior: 'smooth' });
-            document.getElementById('messageInput').focus();
-        }
+        const GROK_API_KEY = 'xai-vfMTTjT1yJRgV65HrEwJSoPrRbHRCvGUJvJs9nSDEyrvmHQ9V3NmedGpyVyj3n09izpBZTxwYMWziumk';
+        const API_URL = 'https://api.x.ai/v1/chat/completions';
+        let conversationHistory = [
+            {
+                role: "system",
+                content: "You are Zylo, a friendly and helpful AI assistant. Keep responses conversational, helpful, and engaging. You're embedded in a chat interface and should provide thoughtful, personalized responses. Be concise but informative."
+            }
+        ];
 
         async function sendMessage() {
             const input = document.getElementById('messageInput');
             const chatBox = document.getElementById('chatBox');
+            const sendButton = document.getElementById('sendButton');
             const message = input.value.trim();
 
             if (message === '') return;
+            const welcomeMessage = chatBox.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.remove();
+            }
             input.disabled = true;
-            const sendButton = document.querySelector('.send-button');
-            const originalButtonText = sendButton.textContent;
-            sendButton.textContent = 'Thinking...';
             sendButton.disabled = true;
+            sendButton.innerHTML = '⏳';
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
-            userMessage.innerHTML = `<strong>You:</strong> ${message}`;
+            userMessage.innerHTML = `
+                <div class="message-sender">You</div>
+                <div class="message-content">${message}</div>
+            `;
             chatBox.appendChild(userMessage);
+            conversationHistory.push({
+                role: "user",
+                content: message
+            });
             input.value = '';
             const typingIndicator = document.createElement('div');
             typingIndicator.className = 'message ai-message typing-indicator';
-            typingIndicator.innerHTML = `<strong>Zylo:</strong> <span class="typing-dots">●●●</span>`;
+            typingIndicator.innerHTML = `
+                <div class="message-sender">Zylo</div>
+                <div class="message-content"><span class="typing-dots"></span> Thinking...</div>
+            `;
             chatBox.appendChild(typingIndicator);
             chatBox.scrollTop = chatBox.scrollHeight;
 
             try {
-                const response = await fetch(urlforapi, {
+                    const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.x.ai/v1/chat/completions', { ... });
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${idkgroksapi}`
+                        'Authorization': `Bearer ${GROK_API_KEY}`
                     },
                     body: JSON.stringify({
-                        messages: [
-                            {
-                                role: "system",
-                                content: "You are Zylo, a friendly and helpful AI assistant. Keep responses conversational and helpful. You're embedded in a website called 'Zylo AI' and you should act as this AI assistant."
-                            },
-                            {
-                                role: "user",
-                                content: message
-                            }
-                        ],
+                        messages: conversationHistory,
                         model: "grok-beta",
                         stream: false,
-                        temperature: 0.7
+                        temperature: 0.7,
+                        max_tokens: 500
                     })
                 });
                 chatBox.removeChild(typingIndicator);
@@ -431,59 +379,75 @@
                 if (response.ok) {
                     const data = await response.json();
                     const aiResponse = data.choices[0].message.content;
+                    conversationHistory.push({
+                        role: "assistant",
+                        content: aiResponse
+                    });
+                    if (conversationHistory.length > 21) {
+                        conversationHistory = [
+                            conversationHistory[0],
+                            ...conversationHistory.slice(-20)
+                        ];
+                    }
                     const aiMessage = document.createElement('div');
                     aiMessage.className = 'message ai-message';
-                    aiMessage.innerHTML = `<strong>Zylo:</strong> ${aiResponse}`;
+                    aiMessage.innerHTML = `
+                        <div class="message-sender">Zylo</div>
+                        <div class="message-content">${aiResponse}</div>
+                    `;
                     chatBox.appendChild(aiMessage);
                 } else {
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'message ai-message error-message';
-                    errorMessage.innerHTML = `<strong>Zylo:</strong> I'm having trouble connecting right now. Please try again in a moment.`;
-                    chatBox.appendChild(errorMessage);
-                    console.error('API Error:', response.status, response.statusText);
+                    throw new Error(`API request failed: ${response.status} - ${response.statusText}`);
                 }
             } catch (error) {
                 if (chatBox.contains(typingIndicator)) {
                     chatBox.removeChild(typingIndicator);
                 }
                 const errorMessage = document.createElement('div');
-                errorMessage.className = 'message ai-message error-message';
-                errorMessage.innerHTML = `<strong>Zylo:</strong> I'm experiencing some technical difficulties. Please check your connection and try again.`;
+                errorMessage.className = 'message error-message';
+                errorMessage.innerHTML = `
+                    <div class="message-sender">System Error</div>
+                    <div class="message-content">Sorry, I'm having trouble connecting to the AI service right now. Please check your internet connection and try again. Error: ${error.message}</div>
+                `;
                 chatBox.appendChild(errorMessage);
-                console.error('Network Error:', error);
+
+                console.error('API Error:', error);
             }
             input.disabled = false;
             sendButton.disabled = false;
-            sendButton.textContent = originalButtonText;
+            sendButton.innerHTML = '➤';
             input.focus();
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
         function handleKeyPress(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
                 sendMessage();
             }
         }
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+
+        function clearChat() {
+            const chatBox = document.getElementById('chatBox');
+            conversationHistory = [
+                {
+                    role: "system",
+                    content: "You are Zylo, a friendly and helpful AI assistant. Keep responses conversational, helpful, and engaging. You're embedded in a chat interface and should provide thoughtful, personalized responses. Be concise but informative."
                 }
-            });
-        });
+            ];
+            
+            chatBox.innerHTML = `
+                <div class="welcome-message">
+                    👋 Welcome back! I'm Zylo, your AI assistant powered by Grok. What would you like to talk about?
+                </div>
+            `;
+        }
         document.addEventListener('DOMContentLoaded', function() {
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
+            document.getElementById('messageInput').focus();
+        });
+        window.addEventListener('resize', function() {
+            const chatBox = document.getElementById('chatBox');
+            chatBox.scrollTop = chatBox.scrollHeight;
         });
     </script>
 </body>
