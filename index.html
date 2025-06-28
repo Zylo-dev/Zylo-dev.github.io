@@ -373,9 +373,8 @@
     </footer>
 
     <script>
-        // Grok AI Configuration
-        const GROK_API_KEY = 'xai-vfMTTjT1yJRgV65HrEwJSoPrRbHRCvGUJvJs9nSDEyrvmHQ9V3NmedGpyVyj3n09izpBZTxwYMWziumk';
-        const API_URL = 'https://api.x.ai/v1/chat/completions';
+        const idkgroksapi = 'xai-vfMTTjT1yJRgV65HrEwJSoPrRbHRCvGUJvJs9nSDEyrvmHQ9V3NmedGpyVyj3n09izpBZTxwYMWziumk';
+        const urlforapi = 'https://api.x.ai/v1/chat/completions';
 
         function scrollToChat() {
             document.getElementById('chat').scrollIntoView({ behavior: 'smooth' });
@@ -388,24 +387,16 @@
             const message = input.value.trim();
 
             if (message === '') return;
-
-            // Disable input while processing
             input.disabled = true;
             const sendButton = document.querySelector('.send-button');
             const originalButtonText = sendButton.textContent;
             sendButton.textContent = 'Thinking...';
             sendButton.disabled = true;
-
-            // Add user message
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
             userMessage.innerHTML = `<strong>You:</strong> ${message}`;
             chatBox.appendChild(userMessage);
-
-            // Clear input
             input.value = '';
-
-            // Show typing indicator
             const typingIndicator = document.createElement('div');
             typingIndicator.className = 'message ai-message typing-indicator';
             typingIndicator.innerHTML = `<strong>Zylo:</strong> <span class="typing-dots">●●●</span>`;
@@ -413,12 +404,11 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             try {
-                // Call Grok AI API
-                const response = await fetch(API_URL, {
+                const response = await fetch(urlforapi, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${GROK_API_KEY}`
+                        'Authorization': `Bearer ${idkgroksapi}`
                     },
                     body: JSON.stringify({
                         messages: [
@@ -436,21 +426,16 @@
                         temperature: 0.7
                     })
                 });
-
-                // Remove typing indicator
                 chatBox.removeChild(typingIndicator);
 
                 if (response.ok) {
                     const data = await response.json();
                     const aiResponse = data.choices[0].message.content;
-
-                    // Add AI response
                     const aiMessage = document.createElement('div');
                     aiMessage.className = 'message ai-message';
                     aiMessage.innerHTML = `<strong>Zylo:</strong> ${aiResponse}`;
                     chatBox.appendChild(aiMessage);
                 } else {
-                    // Handle API error
                     const errorMessage = document.createElement('div');
                     errorMessage.className = 'message ai-message error-message';
                     errorMessage.innerHTML = `<strong>Zylo:</strong> I'm having trouble connecting right now. Please try again in a moment.`;
@@ -458,26 +443,19 @@
                     console.error('API Error:', response.status, response.statusText);
                 }
             } catch (error) {
-                // Remove typing indicator
                 if (chatBox.contains(typingIndicator)) {
                     chatBox.removeChild(typingIndicator);
                 }
-
-                // Handle network error
                 const errorMessage = document.createElement('div');
                 errorMessage.className = 'message ai-message error-message';
                 errorMessage.innerHTML = `<strong>Zylo:</strong> I'm experiencing some technical difficulties. Please check your connection and try again.`;
                 chatBox.appendChild(errorMessage);
                 console.error('Network Error:', error);
             }
-
-            // Re-enable input
             input.disabled = false;
             sendButton.disabled = false;
             sendButton.textContent = originalButtonText;
             input.focus();
-
-            // Scroll to bottom
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
@@ -486,8 +464,6 @@
                 sendMessage();
             }
         }
-
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -497,10 +473,7 @@
                 }
             });
         });
-
-        // Add some interactive elements
         document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to feature cards
             const featureCards = document.querySelectorAll('.feature-card');
             featureCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
