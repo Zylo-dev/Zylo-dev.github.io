@@ -1,4 +1,1127 @@
-<!DOCTYPE html>
+console.log('CodeMasters website loaded successfully! 🚀');
+
+        // Course Learning System
+        let currentCourse = null;
+        let currentLessonIndex = 0;
+        let courseProgress = {};
+
+        // Course curricula with real educational content
+        const courses = {
+            react: {
+                title: 'Complete React Developer 2024',
+                instructor: 'Sarah Johnson',
+                lessons: [
+                    {
+                        title: 'Introduction to React',
+                        duration: '15 min',
+                        content: `
+                            <h3>Welcome to React!</h3>
+                            <p>React is a powerful JavaScript library for building user interfaces, developed by Facebook. It's component-based, declarative, and makes building interactive UIs simple and efficient.</p>
+                            
+                            <h4>Why React?</h4>
+                            <ul>
+                                <li><strong>Component-Based:</strong> Build encapsulated components that manage their own state</li>
+                                <li><strong>Declarative:</strong> React makes it painless to create interactive UIs</li>
+                                <li><strong>Learn Once, Write Anywhere:</strong> Use React for web, mobile, and desktop</li>
+                                <li><strong>Virtual DOM:</strong> Efficient updates and rendering</li>
+                            </ul>
+
+                            <h4>Your First React Component</h4>
+                            <div class="code-editor">
+function Welcome(props) {
+  return &lt;h1&gt;Hello, {props.name}!&lt;/h1&gt;;
+}
+
+// Usage
+&lt;Welcome name="World" /&gt;
+                            </div>
+
+                            <div class="quiz-container">
+                                <div class="quiz-question">What is React primarily used for?</div>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Database management</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Building user interfaces</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Server-side programming</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) File system operations</div>
+                                </div>
+                            </div>
+                        `,
+                        completed: false
+                    },
+                    {
+                        title: 'JSX and Elements',
+                        duration: '20 min',
+                        content: `
+                            <h3>Understanding JSX</h3>
+                            <p>JSX is a syntax extension for JavaScript that looks similar to HTML. It's not required for React, but it makes writing components much more intuitive.</p>
+
+                            <h4>JSX Rules</h4>
+                            <ul>
+                                <li>Always return a single parent element</li>
+                                <li>Use className instead of class</li>
+                                <li>Use camelCase for event handlers</li>
+                                <li>Self-closing tags must end with /&gt;</li>
+                            </ul>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Write Your First JSX</div>
+                                <div class="exercise-instructions">
+                                    Create a JSX element that displays your name in an h2 tag and your favorite hobby in a paragraph. Remember to wrap everything in a div!
+                                </div>
+                                <textarea class="code-input" placeholder="Write your JSX here...">
+// Your code here
+const MyComponent = () => {
+  return (
+    
+  );
+};
+                                </textarea>
+                                <button class="run-code-btn" onclick="runJSXExercise()">Run Code</button>
+                                <div class="code-output" id="jsx-output"></div>
+                            </div>
+
+                            <h4>Embedding Expressions in JSX</h4>
+                            <div class="code-editor">
+const name = 'Sarah';
+const age = 25;
+
+const element = (
+  &lt;div&gt;
+    &lt;h1&gt;Hello, {name}!&lt;/h1&gt;
+    &lt;p&gt;You are {age} years old.&lt;/p&gt;
+    &lt;p&gt;Next year you'll be {age + 1}.&lt;/p&gt;
+  &lt;/div&gt;
+);
+                            </div>
+                        `,
+                        completed: false
+                    }
+                ]
+            },
+            javascript: {
+                title: 'Advanced JavaScript Concepts',
+                instructor: 'Mike Chen',
+                lessons: [
+                    {
+                        title: 'Understanding Closures',
+                        duration: '25 min',
+                        content: `
+                            <h3>JavaScript Closures</h3>
+                            <p>A closure is a function that has access to variables in its enclosing (outer) scope even after the outer function has returned. This is a powerful feature that enables many advanced JavaScript patterns.</p>
+
+                            <h4>Basic Closure Example</h4>
+                            <div class="code-editor">
+function outerFunction(x) {
+  // This is the outer function's variable
+  
+  function innerFunction(y) {
+    // Inner function has access to x
+    console.log(x + y);
+  }
+  
+  return innerFunction;
+}
+
+const myFunction = outerFunction(10);
+myFunction(5); // Outputs: 15
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Create a Counter with Closures</div>
+                                <div class="exercise-instructions">
+                                    Create a function called createCounter that returns a function. The returned function should increment and return a counter each time it's called.
+                                </div>
+                                <textarea class="code-input" id="closure-exercise">
+function createCounter() {
+  // Your code here
+  
+}
+
+// Test your code
+const counter = createCounter();
+console.log(counter()); // Should output: 1
+console.log(counter()); // Should output: 2
+console.log(counter()); // Should output: 3
+                                </textarea>
+                                <button class="run-code-btn" onclick="runClosureExercise()">Run Code</button>
+                                <div class="code-output" id="closure-output"></div>
+                            </div>
+
+                            <div class="quiz-container">
+                                <div class="quiz-question">What is a closure in JavaScript?</div>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) A way to close browser windows</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) A function that retains access to its outer scope variables</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) A method to close database connections</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) A syntax for ending functions</div>
+                                </div>
+                            </div>
+                        `,
+                        completed: false
+                    },
+                    {
+                        title: 'Async/Await and Promises',
+                        duration: '30 min',
+                        content: `
+                            <h3>Asynchronous JavaScript</h3>
+                            <p>JavaScript is single-threaded, but it can handle asynchronous operations through callbacks, promises, and async/await. Understanding these concepts is crucial for modern JavaScript development.</p>
+
+                            <h4>Promises</h4>
+                            <div class="code-editor">
+// Creating a Promise
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const success = Math.random() > 0.5;
+    if (success) {
+      resolve("Operation successful!");
+    } else {
+      reject("Operation failed!");
+    }
+  }, 1000);
+});
+
+// Using the Promise
+myPromise
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+                            </div>
+
+                            <h4>Async/Await</h4>
+                            <div class="code-editor">
+async function fetchUserData(userId) {
+  try {
+    const response = await fetch(\`/api/users/\${userId}\`);
+    const userData = await response.json();
+    return userData;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    throw error;
+  }
+}
+
+// Usage
+fetchUserData(123)
+  .then(user => console.log(user))
+  .catch(error => console.error(error));
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Create a Delay Function</div>
+                                <div class="exercise-instructions">
+                                    Create an async function called delay that waits for a specified number of milliseconds using setTimeout and a Promise.
+                                </div>
+                                <textarea class="code-input" id="async-exercise">
+function delay(ms) {
+  // Return a Promise that resolves after ms milliseconds
+  
+}
+
+// Test your code (this should wait 2 seconds)
+async function test() {
+  console.log('Starting...');
+  await delay(2000);
+  console.log('Done waiting!');
+}
+
+test();
+                                </textarea>
+                                <button class="run-code-btn" onclick="runAsyncExercise()">Run Code</button>
+                                <div class="code-output" id="async-output"></div>
+                            </div>
+                        `,
+                        completed: false
+                    }
+                ]
+            },
+            vue: {
+                title: 'Vue.js 3 Composition API',
+                instructor: 'Emma Davis',
+                lessons: [
+                    {
+                        title: 'Vue.js Fundamentals',
+                        duration: '20 min',
+                        content: `
+                            <h3>Welcome to Vue.js!</h3>
+                            <p>Vue.js is a progressive JavaScript framework for building user interfaces. It's designed to be incrementally adoptable and focuses on the view layer.</p>
+
+                            <h4>Your First Vue App</h4>
+                            <div class="code-editor">
+&lt;!-- HTML --&gt;
+&lt;div id="app"&gt;
+  &lt;h1&gt;{{ message }}&lt;/h1&gt;
+  &lt;button @click="updateMessage"&gt;Click me!&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// JavaScript
+const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      message: 'Hello Vue!'
+    }
+  },
+  methods: {
+    updateMessage() {
+      this.message = 'Button clicked!';
+    }
+  }
+}).mount('#app');
+&lt;/script&gt;
+                            </div>
+
+                            <div class="quiz-container">
+                                <div class="quiz-question">What symbol is used for interpolation in Vue.js templates?</div>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) %% %%</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) {{ }}</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) ${ }</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) [[ ]]</div>
+                                </div>
+                            </div>
+
+                            <h4>Vue.js Core Features</h4>
+                            <ul>
+                                <li><strong>Reactive Data:</strong> Automatic UI updates when data changes</li>
+                                <li><strong>Component System:</strong> Reusable, self-contained components</li>
+                                <li><strong>Directives:</strong> Special HTML attributes (v-if, v-for, v-model)</li>
+                                <li><strong>Single File Components:</strong> HTML, CSS, and JS in one file</li>
+                            </ul>
+                        `,
+                        completed: false
+                    },
+                    {
+                        title: 'Composition API Basics',
+                        duration: '25 min',
+                        content: `
+                            <h3>Vue 3 Composition API</h3>
+                            <p>The Composition API is a new way to write Vue components that provides better logic reuse and more flexible code organization.</p>
+
+                            <h4>setup() Function</h4>
+                            <div class="code-editor">
+import { ref, computed, onMounted } from 'vue';
+
+export default {
+  setup() {
+    // Reactive data
+    const count = ref(0);
+    const name = ref('Vue Developer');
+    
+    // Computed property
+    const doubleCount = computed(() => count.value * 2);
+    
+    // Methods
+    const increment = () => {
+      count.value++;
+    };
+    
+    // Lifecycle hook
+    onMounted(() => {
+      console.log('Component mounted!');
+    });
+    
+    // Return what the template needs
+    return {
+      count,
+      name,
+      doubleCount,
+      increment
+    };
+  }
+};
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Create a Todo Counter</div>
+                                <div class="exercise-instructions">
+                                    Using the Composition API, create reactive data for a todo list count and a function to add todos. Use ref() for the count.
+                                </div>
+                                <textarea class="code-input" id="vue-exercise">
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    // Create a reactive count starting at 0
+    
+    // Create a function to add a todo (increment count)
+    
+    // Return the data and methods
+    return {
+      
+    };
+  }
+};
+                                </textarea>
+                                <button class="run-code-btn" onclick="runVueExercise()">Check Solution</button>
+                                <div class="code-output" id="vue-output"></div>
+                            </div>
+                        `,
+                        completed: false
+                    }
+                ]
+            },
+            node: {
+                title: 'Node.js & Express Masterclass',
+                instructor: 'David Wilson',
+                lessons: [
+                    {
+                        title: 'Node.js Fundamentals',
+                        duration: '30 min',
+                        content: `
+                            <h3>Introduction to Node.js</h3>
+                            <p>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows you to run JavaScript on the server side, making it possible to build full-stack applications with one language.</p>
+
+                            <h4>Your First Node.js Server</h4>
+                            <div class="code-editor">
+// server.js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;');
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(\`Server running on http://localhost:\${PORT}\`);
+});
+                            </div>
+
+                            <h4>CommonJS Modules</h4>
+                            <div class="code-editor">
+// math.js
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+
+module.exports = {
+  add,
+  subtract
+};
+
+// app.js
+const { add, subtract } = require('./math');
+
+console.log(add(5, 3)); // 8
+console.log(subtract(10, 4)); // 6
+                            </div>
+
+                            <div class="quiz-container">
+                                <div class="quiz-question">What is Node.js built on?</div>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) SpiderMonkey engine</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Chrome's V8 JavaScript engine</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) JavaScriptCore engine</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Chakra engine</div>
+                                </div>
+                            </div>
+                        `,
+                        completed: false
+                    },
+                    {
+                        title: 'Express.js Basics',
+                        duration: '35 min',
+                        content: `
+                            <h3>Building APIs with Express</h3>
+                            <p>Express.js is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>
+
+                            <h4>Basic Express Server</h4>
+                            <div class="code-editor">
+const express = require('express');
+const app = express();
+
+// Middleware
+app.use(express.json());
+
+// Routes
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to my API!' });
+});
+
+app.get('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  res.json({ 
+    id: userId, 
+    name: 'John Doe',
+    email: 'john@example.com'
+  });
+});
+
+app.post('/users', (req, res) => {
+  const { name, email } = req.body;
+  res.status(201).json({
+    id: Date.now(),
+    name,
+    email,
+    message: 'User created successfully'
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(\`Server running on port \${PORT}\`);
+});
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Create a Simple Todo API</div>
+                                <div class="exercise-instructions">
+                                    Create an Express route that handles GET /todos and returns an array of todo objects. Each todo should have an id, title, and completed status.
+                                </div>
+                                <textarea class="code-input" id="express-exercise">
+const express = require('express');
+const app = express();
+
+// Sample todos data
+const todos = [
+  { id: 1, title: 'Learn Node.js', completed: false },
+  { id: 2, title: 'Build an API', completed: true }
+];
+
+// Create your GET /todos route here
+
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+                                </textarea>
+                                <button class="run-code-btn" onclick="runExpressExercise()">Check Solution</button>
+                                <div class="code-output" id="express-output"></div>
+                            </div>
+                        `,
+                        completed: false
+                    }
+                ]
+            },
+            typescript: {
+                title: 'TypeScript for Professionals',
+                instructor: 'Alex Rodriguez',
+                lessons: [
+                    {
+                        title: 'TypeScript Basics',
+                        duration: '25 min',
+                        content: `
+                            <h3>Introduction to TypeScript</h3>
+                            <p>TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale. It adds static type definitions to JavaScript.</p>
+
+                            <h4>Basic Types</h4>
+                            <div class="code-editor">
+// Basic types
+let message: string = "Hello TypeScript";
+let count: number = 42;
+let isActive: boolean = true;
+let items: string[] = ["apple", "banana", "orange"];
+
+// Function with types
+function greet(name: string): string {
+  return \`Hello, \${name}!\`;
+}
+
+// Interface
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  isAdmin?: boolean; // Optional property
+}
+
+const user: User = {
+  id: 1,
+  name: "John Doe",
+  email: "john@example.com"
+};
+                            </div>
+
+                            <div class="quiz-container">
+                                <div class="quiz-question">What does the '?' symbol mean in TypeScript interfaces?</div>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Required property</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Optional property</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Nullable property</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Private property</div>
+                                </div>
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Define a Product Interface</div>
+                                <div class="exercise-instructions">
+                                    Create an interface called Product with properties: id (number), name (string), price (number), and description (optional string).
+                                </div>
+                                <textarea class="code-input" id="typescript-exercise">
+// Define your Product interface here
+
+
+// Create a product object using the interface
+const laptop: Product = {
+  id: 1,
+  name: "MacBook Pro",
+  price: 1999
+};
+                                </textarea>
+                                <button class="run-code-btn" onclick="runTypeScriptExercise()">Check Solution</button>
+                                <div class="code-output" id="typescript-output"></div>
+                            </div>
+                        `,
+                        completed: false
+                    },
+                    {
+                        title: 'Advanced Types and Generics',
+                        duration: '30 min',
+                        content: `
+                            <h3>Advanced TypeScript Features</h3>
+                            <p>TypeScript provides powerful features like union types, generics, and utility types that make your code more flexible and type-safe.</p>
+
+                            <h4>Union Types and Type Guards</h4>
+                            <div class="code-editor">
+// Union types
+type Status = "loading" | "success" | "error";
+
+function handleResponse(status: Status) {
+  switch (status) {
+    case "loading":
+      return "Please wait...";
+    case "success":
+      return "Data loaded successfully!";
+    case "error":
+      return "Something went wrong!";
+  }
+}
+
+// Type guards
+function isString(value: unknown): value is string {
+  return typeof value === "string";
+}
+                            </div>
+
+                            <h4>Generics</h4>
+                            <div class="code-editor">
+// Generic function
+function identity&lt;T&gt;(arg: T): T {
+  return arg;
+}
+
+const stringResult = identity&lt;string&gt;("hello");
+const numberResult = identity&lt;number&gt;(42);
+
+// Generic interface
+interface ApiResponse&lt;T&gt; {
+  data: T;
+  status: number;
+  message: string;
+}
+
+interface User {
+  id: number;
+  name: string;
+}
+
+const userResponse: ApiResponse&lt;User&gt; = {
+  data: { id: 1, name: "John" },
+  status: 200,
+  message: "Success"
+};
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: Create a Generic Array Function</div>
+                                <div class="exercise-instructions">
+                                    Create a generic function called getFirstItem that takes an array of any type and returns the first item or undefined if the array is empty.
+                                </div>
+                                <textarea class="code-input" id="generics-exercise">
+// Create your generic function here
+function getFirstItem
+
+// Test cases
+const numbers = [1, 2, 3];
+const strings = ["a", "b", "c"];
+const empty: number[] = [];
+
+console.log(getFirstItem(numbers)); // Should be 1
+console.log(getFirstItem(strings)); // Should be "a"
+console.log(getFirstItem(empty));   // Should be undefined
+                                </textarea>
+                                <button class="run-code-btn" onclick="runGenericsExercise()">Check Solution</button>
+                                <div class="code-output" id="generics-output"></div>
+                            </div>
+                        `,
+                        completed: false
+                    }
+                ]
+            },
+            nextjs: {
+                title: 'Next.js 14 Complete Guide',
+                instructor: 'Lisa Park',
+                lessons: [
+                    {
+                        title: 'Next.js App Router',
+                        duration: '25 min',
+                        content: `
+                            <h3>Next.js App Router</h3>
+                            <p>Next.js 13+ introduced the App Router, a new way to build applications with improved performance, better developer experience, and support for React's latest features.</p>
+
+                            <h4>File-based Routing</h4>
+                            <div class="code-editor">
+// File structure
+app/
+├── page.tsx          // Home page (/)
+├── about/
+│   └── page.tsx      // About page (/about)
+├── blog/
+│   ├── page.tsx      // Blog list (/blog)
+│   └── [slug]/
+│       └── page.tsx  // Dynamic blog post (/blog/my-post)
+└── layout.tsx        // Root layout
+                            </div>
+
+                            <h4>Server Components</h4>
+                            <div class="code-editor">
+// app/page.tsx - Server Component by default
+async function getData() {
+  const res = await fetch('https://api.example.com/posts');
+  return res.json();
+}
+
+export default async function HomePage() {
+  const posts = await getData();
+  
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Latest Posts&lt;/h1&gt;
+      {posts.map(post =&gt; (
+        &lt;article key={post.id}&gt;
+          &lt;h2&gt;{post.title}&lt;/h2&gt;
+          &lt;p&gt;{post.excerpt}&lt;/p&gt;
+        &lt;/article&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+                            </div>
+
+                            <div class="quiz-container">
+                                <div class="quiz-question">What is the default type of component in Next.js App Router?</div>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Client Component</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Server Component</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Static Component</div>
+                                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Hybrid Component</div>
+                                </div>
+                            </div>
+                        `,
+                        completed: false
+                    },
+                    {
+                        title: 'Client vs Server Components',
+                        duration: '30 min',
+                        content: `
+                            <h3>Understanding Client and Server Components</h3>
+                            <p>Next.js App Router distinguishes between Server Components (rendered on the server) and Client Components (rendered in the browser). Understanding when to use each is crucial for optimal performance.</p>
+
+                            <h4>Server Component (Default)</h4>
+                            <div class="code-editor">
+// No "use client" directive = Server Component
+// Runs on the server, great for data fetching
+
+async function ServerComponent() {
+  // This runs on the server
+  const data = await fetch('https://api.example.com/data');
+  const result = await data.json();
+  
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Server Rendered Data&lt;/h1&gt;
+      &lt;pre&gt;{JSON.stringify(result, null, 2)}&lt;/pre&gt;
+    &lt;/div&gt;
+  );
+}
+                            </div>
+
+                            <h4>Client Component</h4>
+                            <div class="code-editor">
+'use client'; // This directive makes it a Client Component
+
+import { useState } from 'react';
+
+function ClientComponent() {
+  const [count, setCount] = useState(0);
+  
+  // This runs in the browser
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+  
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Count: {count}&lt;/h1&gt;
+      &lt;button onClick={handleClick}&gt;
+        Increment
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+                            </div>
+
+                            <div class="exercise-container">
+                                <div class="exercise-title">🎯 Exercise: When to Use Client vs Server Components</div>
+                                <div class="exercise-instructions">
+                                    For each scenario below, decide whether you should use a Server Component or Client Component:
+                                </div>
+                                <div class="quiz-container">
+                                    <div class="quiz-question">A component that fetches user data from a database and displays it</div>
+                                    <div class="quiz-options">
+                                        <div class="quiz-option" onclick="selectQuizOption(this, true)">Server Component</div>
+                                        <div class="quiz-option" onclick="selectQuizOption(this, false)">Client Component</div>
+                                    </div>
+                                </div>
+                                <div class="quiz-container">
+                                    <div class="quiz-question">A shopping cart that updates when users click "Add to Cart"</div>
+                                    <div class="quiz-options">
+                                        <div class="quiz-option" onclick="selectQuizOption(this, false)">Server Component</div>
+                                        <div class="quiz-option" onclick="selectQuizOption(this, true)">Client Component</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        completed: false
+                    }
+                ]
+            }
+        };
+
+        // Load progress from memory (simulating persistence)
+        function loadProgress() {
+            // In a real app, this would come from localStorage or a database
+            // For demo purposes, we'll start with empty progress
+            return {};
+        }
+
+        // Save progress to memory
+        function saveProgress() {
+            // In a real app, this would save to localStorage or a database
+            console.log('Progress saved:', courseProgress);
+        }
+
+        // Initialize progress
+        courseProgress = loadProgress();
+
+        function startCourse(courseId) {
+            currentCourse = courses[courseId];
+            currentLessonIndex = 0;
+            
+            if (!courseProgress[courseId]) {
+                courseProgress[courseId] = {
+                    lessonsCompleted: [],
+                    currentLesson: 0,
+                    progress: 0
+                };
+            }
+            
+            document.getElementById('course-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            setupCourse();
+            loadLesson(0);
+        }
+
+        function closeCourse() {
+            document.getElementById('course-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentCourse = null;
+            saveProgress();
+            updateMainPageProgress();
+        }
+
+        function setupCourse() {
+            if (!currentCourse) return;
+            
+            document.getElementById('course-title').textContent = currentCourse.title;
+            
+            const lessonList = document.getElementById('lesson-list');
+            lessonList.innerHTML = '';
+            
+            currentCourse.lessons.forEach((lesson, index) => {
+                const lessonItem = document.createElement('div');
+                lessonItem.className = 'lesson-item';
+                if (index === currentLessonIndex) {
+                    lessonItem.classList.add('active');
+                }
+                if (lesson.completed) {
+                    lessonItem.classList.add('completed');
+                }
+                
+                lessonItem.innerHTML = `
+                    <h4>${lesson.title}</h4>
+                    <p>${lesson.duration}</p>
+                `;
+                
+                lessonItem.onclick = () => loadLesson(index);
+                lessonList.appendChild(lessonItem);
+            });
+            
+            updateCourseProgress();
+        }
+
+        function loadLesson(index) {
+            if (!currentCourse || index < 0 || index >= currentCourse.lessons.length) return;
+            
+            currentLessonIndex = index;
+            const lesson = currentCourse.lessons[index];
+            
+            document.getElementById('lesson-content').innerHTML = lesson.content;
+            
+            // Update lesson list
+            document.querySelectorAll('.lesson-item').forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === index) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-lesson').style.display = index === 0 ? 'none' : 'inline-block';
+            document.getElementById('next-lesson').style.display = index === currentCourse.lessons.length - 1 ? 'none' : 'inline-block';
+            document.getElementById('complete-lesson').style.display = lesson.completed ? 'none' : 'inline-block';
+        }
+
+        function previousLesson() {
+            if (currentLessonIndex > 0) {
+                loadLesson(currentLessonIndex - 1);
+            }
+        }
+
+        function nextLesson() {
+            if (currentLessonIndex < currentCourse.lessons.length - 1) {
+                loadLesson(currentLessonIndex + 1);
+            }
+        }
+
+        function completeLesson() {
+            if (!currentCourse) return;
+            
+            const lesson = currentCourse.lessons[currentLessonIndex];
+            lesson.completed = true;
+            
+            const lessonItems = document.querySelectorAll('.lesson-item');
+            lessonItems[currentLessonIndex].classList.add('completed');
+            
+            document.getElementById('complete-lesson').style.display = 'none';
+            
+            updateCourseProgress();
+            saveProgress();
+            
+            // Auto-advance to next lesson
+            setTimeout(() => {
+                if (currentLessonIndex < currentCourse.lessons.length - 1) {
+                    nextLesson();
+                } else {
+                    alert('🎉 Congratulations! You completed the course!');
+                }
+            }, 1000);
+        }
+
+        function updateCourseProgress() {
+            if (!currentCourse) return;
+            
+            const completed = currentCourse.lessons.filter(l => l.completed).length;
+            const total = currentCourse.lessons.length;
+            const progressPercent = Math.round((completed / total) * 100);
+            
+            document.getElementById('course-progress-fill').style.width = progressPercent + '%';
+            document.getElementById('course-progress-text').textContent = progressPercent + '% Complete';
+        }
+
+        function updateMainPageProgress() {
+            // Update progress bars on main page
+            document.querySelectorAll('.course-card').forEach(card => {
+                const progressBar = card.querySelector('.course-progress-fill');
+                if (progressBar) {
+                    // Simulate random progress for demo
+                    const randomProgress = Math.floor(Math.random() * 100);
+                    progressBar.style.width = randomProgress + '%';
+                }
+            });
+        }
+
+        // Quiz functionality
+        function selectQuizOption(element, isCorrect) {
+            const options = element.parentNode.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            element.classList.add('selected');
+            
+            setTimeout(() => {
+                if (isCorrect) {
+                    element.classList.add('correct');
+                    element.innerHTML += ' ✓';
+                } else {
+                    element.classList.add('incorrect');
+                    element.innerHTML += ' ✗';
+                    // Show correct answer
+                    options.forEach(opt => {
+                        if (opt.onclick.toString().includes('true')) {
+                            opt.classList.add('correct');
+                            opt.innerHTML += ' ✓ (Correct)';
+                        }
+                    });
+                }
+            }, 500);
+        }
+
+        // Exercise functions
+        function runJSXExercise() {
+            const code = document.querySelector('.code-input').value;
+            const output = document.getElementById('jsx-output');
+            
+            // Simple validation for JSX exercise
+            if (code.includes('<div>') && code.includes('<h2>') && code.includes('<p>')) {
+                output.innerHTML = `
+                    <div style="color: #4ecdc4;">✅ Great job! Your JSX looks correct.</div>
+                    <div style="color: #ccc; margin-top: 10px;">Your component structure includes:</div>
+                    <ul style="color: #ccc; margin-left: 20px;">
+                        <li>A wrapping div element</li>
+                        <li>An h2 tag for your name</li>
+                        <li>A paragraph for your hobby</li>
+                    </ul>
+                `;
+            } else {
+                output.innerHTML = `
+                    <div style="color: #ff6b6b;">❌ Make sure to include a div wrapper, h2 tag, and paragraph tag.</div>
+                `;
+            }
+        }
+
+        function runClosureExercise() {
+            const code = document.getElementById('closure-exercise').value;
+            const output = document.getElementById('closure-output');
+            
+            try {
+                // Simple validation for closure exercise
+                if (code.includes('let count') || code.includes('var count')) {
+                    output.innerHTML = `
+                        <div style="color: #4ecdc4;">✅ Excellent! Your closure correctly maintains state.</div>
+                        <div style="color: #ccc; margin-top: 10px;">Expected output:</div>
+                        <div style="color: #4ecdc4;">1</div>
+                        <div style="color: #4ecdc4;">2</div>
+                        <div style="color: #4ecdc4;">3</div>
+                    `;
+                } else {
+                    output.innerHTML = `
+                        <div style="color: #ff6b6b;">❌ Remember to create a counter variable and return a function that increments it.</div>
+                    `;
+                }
+            } catch (error) {
+                output.innerHTML = `<div style="color: #ff6b6b;">Error: ${error.message}</div>`;
+            }
+        }
+
+        function runAsyncExercise() {
+            const code = document.getElementById('async-exercise').value;
+            const output = document.getElementById('async-output');
+            
+            if (code.includes('Promise') && code.includes('setTimeout')) {
+                output.innerHTML = `
+                    <div style="color: #4ecdc4;">✅ Perfect! Your delay function uses Promise and setTimeout correctly.</div>
+                    <div style="color: #ccc; margin-top: 10px;">When executed, it will:</div>
+                    <div style="color: #ccc;">Starting...</div>
+                    <div style="color: #ccc;">(2 second delay)</div>
+                    <div style="color: #ccc;">Done waiting!</div>
+                `;
+            } else {
+                output.innerHTML = `
+                    <div style="color: #ff6b6b;">❌ Your delay function should return a Promise that resolves after the specified milliseconds using setTimeout.</div>
+                `;
+            }
+        }
+
+        function runVueExercise() {
+            const code = document.getElementById('vue-exercise').value;
+            const output = document.getElementById('vue-output');
+            
+            if (code.includes('ref(') && code.includes('return')) {
+                output.innerHTML = `
+                    <div style="color: #4ecdc4;">✅ Well done! Your Composition API setup is correct.</div>
+                    <div style="color: #ccc; margin-top: 10px;">Your solution should include:</div>
+                    <ul style="color: #ccc; margin-left: 20px;">
+                        <li>const todoCount = ref(0);</li>
+                        <li>const addTodo = () => { todoCount.value++; };</li>
+                        <li>return { todoCount, addTodo };</li>
+                    </ul>
+                `;
+            } else {
+                output.innerHTML = `
+                    <div style="color: #ff6b6b;">❌ Make sure to use ref() for reactive data and return the values from setup().</div>
+                `;
+            }
+        }
+
+        function runExpressExercise() {
+            const code = document.getElementById('express-exercise').value;
+            const output = document.getElementById('express-output');
+            
+            if (code.includes('app.get') && code.includes('/todos') && code.includes('res.json')) {
+                output.innerHTML = `
+                    <div style="color: #4ecdc4;">✅ Excellent! Your Express route is correctly set up.</div>
+                    <div style="color: #ccc; margin-top: 10px;">Expected response:</div>
+                    <pre style="color: #4ecdc4; background: #1a1a1a; padding: 10px; border-radius: 4px;">
+[
+  { "id": 1, "title": "Learn Node.js", "completed": false },
+  { "id": 2, "title": "Build an API", "completed": true }
+]</pre>
+                `;
+            } else {
+                output.innerHTML = `
+                    <div style="color: #ff6b6b;">❌ Create a GET route for '/todos' that returns the todos array as JSON.</div>
+                `;
+            }
+        }
+
+        function runTypeScriptExercise() {
+            const code = document.getElementById('typescript-exercise').value;
+            const output = document.getElementById('typescript-output');
+            
+            if (code.includes('interface Product') && code.includes('description?')) {
+                output.innerHTML = `
+                    <div style="color: #4ecdc4;">✅ Perfect! Your TypeScript interface is well-defined.</div>
+                    <div style="color: #ccc; margin-top: 10px;">Your interface should look like:</div>
+                    <pre style="color: #4ecdc4; background: #1a1a1a; padding: 10px; border-radius: 4px;">
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description?: string;
+}</pre>
+                `;
+            } else {
+                output.innerHTML = `
+                    <div style="color: #ff6b6b;">❌ Define an interface with id, name, price (required) and description (optional).</div>
+                `;
+            }
+        }
+
+        function runGenericsExercise() {
+            const code = document.getElementById('generics-exercise').value;
+            const output = document.getElementById('generics-output');
+            
+            if (code.includes('<T>') && code.includes('T[]') && code.includes('T | undefined')) {
+                output.innerHTML = `
+                    <div style="color: #4ecdc4;">✅ Excellent! Your generic function is type-safe and flexible.</div>
+                    <div style="color: #ccc; margin-top: 10px;">Solution:</div>
+                    <pre style="color: #4ecdc4; background: #1a1a1a; padding: 10px; border-radius: 4px;">
+function getFirstItem&lt;T&gt;(array: T[]): T | undefined {
+  return array.length > 0 ? array[0] : undefined;
+}</pre>
+                `;
+            } else {
+                output.innerHTML = `
+                    <div style="color: #ff6b6b;">❌ Use generics &lt;T&gt; and return T | undefined for the first item or undefined.</div>
+                `;
+            }
+        }
+
+        // Initialize course progress on page load
+        updateMainPageProgress();<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -665,7 +1788,7 @@
                                 <div class="instructor-avatar"></div>
                                 <span class="instructor-name">Sarah Johnson</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Start Course</a>
+                            <a href="#" class="btn btn-primary" onclick="startCourse('react')">Start Course</a>
                         </div>
                     </div>
 
@@ -682,7 +1805,7 @@
                                 <div class="instructor-avatar"></div>
                                 <span class="instructor-name">Mike Chen</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Start Course</a>
+                            <a href="#" class="btn btn-primary" onclick="startCourse('javascript')">Start Course</a>
                         </div>
                     </div>
 
@@ -699,7 +1822,7 @@
                                 <div class="instructor-avatar"></div>
                                 <span class="instructor-name">Emma Davis</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Start Course</a>
+                            <a href="#" class="btn btn-primary" onclick="startCourse('vue')">Start Course</a>
                         </div>
                     </div>
 
@@ -716,7 +1839,7 @@
                                 <div class="instructor-avatar"></div>
                                 <span class="instructor-name">David Wilson</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Start Course</a>
+                            <a href="#" class="btn btn-primary" onclick="startCourse('node')">Start Course</a>
                         </div>
                     </div>
 
@@ -733,7 +1856,7 @@
                                 <div class="instructor-avatar"></div>
                                 <span class="instructor-name">Alex Rodriguez</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Start Course</a>
+                            <a href="#" class="btn btn-primary" onclick="startCourse('typescript')">Start Course</a>
                         </div>
                     </div>
 
@@ -750,7 +1873,7 @@
                                 <div class="instructor-avatar"></div>
                                 <span class="instructor-name">Lisa Park</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Start Course</a>
+                            <a href="#" class="btn btn-primary" onclick="startCourse('nextjs')">Start Course</a>
                         </div>
                     </div>
                 </div>
@@ -863,6 +1986,325 @@
             </div>
         </div>
     </footer>
+
+    <!-- Course Learning Modal -->
+    <div id="course-modal" class="course-modal">
+        <div class="course-modal-content">
+            <div class="course-header">
+                <h2 id="course-title">Course Title</h2>
+                <div class="course-progress-container">
+                    <div class="course-progress-bar">
+                        <div id="course-progress-fill" class="course-progress-fill"></div>
+                    </div>
+                    <span id="course-progress-text">0% Complete</span>
+                </div>
+                <button class="close-course" onclick="closeCourse()">&times;</button>
+            </div>
+            
+            <div class="course-sidebar">
+                <div class="lesson-list" id="lesson-list"></div>
+            </div>
+            
+            <div class="course-main">
+                <div id="lesson-content" class="lesson-content"></div>
+                <div class="lesson-controls">
+                    <button id="prev-lesson" class="btn btn-secondary" onclick="previousLesson()">Previous</button>
+                    <button id="next-lesson" class="btn btn-primary" onclick="nextLesson()">Next Lesson</button>
+                    <button id="complete-lesson" class="btn btn-primary" onclick="completeLesson()" style="display: none;">Mark Complete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .course-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            overflow: hidden;
+        }
+
+        .course-modal-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-header {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .course-header h2 {
+            color: #fff;
+            margin: 0;
+        }
+
+        .course-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .course-progress-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .course-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        #course-progress-text {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .close-course {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-course:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .course-sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-right: 1px solid #333;
+            padding: 1rem;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 80px;
+            bottom: 0;
+        }
+
+        .course-main {
+            margin-left: 300px;
+            padding: 2rem;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lesson-content {
+            flex: 1;
+            color: #fff;
+        }
+
+        .lesson-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .lesson-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-item.active {
+            background: rgba(255, 107, 107, 0.2);
+            border-left-color: #ff6b6b;
+        }
+
+        .lesson-item.completed {
+            background: rgba(76, 205, 196, 0.2);
+            border-left-color: #4ecdc4;
+        }
+
+        .lesson-item h4 {
+            color: #fff;
+            margin: 0 0 0.25rem 0;
+            font-size: 0.9rem;
+        }
+
+        .lesson-item p {
+            color: #ccc;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .lesson-controls {
+            display: flex;
+            gap: 1rem;
+            padding: 2rem 0 0;
+            border-top: 1px solid #333;
+            margin-top: 2rem;
+        }
+
+        .code-editor {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #fff;
+            overflow-x: auto;
+        }
+
+        .code-output {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #4ecdc4;
+            min-height: 100px;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ff6b6b;
+        }
+
+        .quiz-option.selected {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 205, 196, 0.2);
+            border-color: #4ecdc4;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+        }
+
+        .exercise-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .exercise-title {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-instructions {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .code-input {
+            width: 100%;
+            min-height: 150px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #fff;
+            resize: vertical;
+        }
+
+        .run-code-btn {
+            background: #4ecdc4;
+            color: #000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .run-code-btn:hover {
+            background: #45b7aa;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .course-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+            
+            .course-main {
+                margin-left: 0;
+                padding: 1rem;
+            }
+            
+            .course-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
 
     <script>
         // Smooth scrolling for navigation links
